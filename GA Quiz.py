@@ -30,4 +30,45 @@ class QuizGame:
         ]
         self.score = 0  # Initialize the score
 
-    
+    def ask_question(self, question):
+        """
+        Ask a question and get the user's answer.
+
+
+        Args:
+            question (dict): A dictionary containing the question, options, and correct answer.
+
+
+        Returns:
+            bool: True if the answer is correct, False otherwise.
+        """
+        print(question["question"])  # Display the question
+        for option in question["options"]:
+            print(option)  # Display the options
+
+
+        answer = input("Your answer (A/B/C/D): ").strip().upper()  # Get user's answer
+        if answer == question["answer"]:
+            print("Correct!\n")
+            return True
+        else:
+            print(f"Wrong! The correct answer was {question['answer']}.\n")
+            return False
+
+
+    def run(self):
+        """Run the quiz game."""
+        print("Welcome to the Quiz Game!\n")
+        for question in self.questions:
+            if self.ask_question(question):
+                self.score += 1  # Increment score for a correct answer
+
+
+        # Display the final score
+        print(f"You scored {self.score} out of {len(self.questions)}.")
+
+
+if __name__ == "__main__":
+    # Create an instance of QuizGame and run it
+    quiz_game = QuizGame()
+    quiz_game.run()
